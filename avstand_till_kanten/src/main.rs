@@ -18,16 +18,16 @@ fn main() {
     .map(|x| x.parse().expect("parse error"))
     .collect();
     
-    let  rows: usize= input_vec[0];
-    let  columns: usize = input_vec[1];
     
-   
-    for mut _i in 1..(rows+1){
-        for mut _j in 1..(columns+1){
-            if distance_to_edge(_i,_j,rows,columns) > 9{
+    for mut _i in 1..(input_vec[0]+1){
+        for mut _j in 1..(input_vec[1]+1){
+            let mut _distance = distance_to_edge(_i,_j,input_vec[0],input_vec[1]);
+            
+            if _distance > 9{
                 print!(".");
-            }else{
-                print!("{}",distance_to_edge(_i,_j,rows,columns))
+            }
+            else{
+                print!("{}",_distance);
             }
         }
         print!("\n");
@@ -43,21 +43,22 @@ fn main() {
     //println!("Print to standard output.");
 }
 fn distance_to_edge(mut x:usize,mut y:usize, r:usize,k:usize) -> usize{
-    let mut _distance: usize = 0;
-        if x > (r / 2) {
+    if x > (r / 2) { 
             x = r - x + 1;
         }
-        if y > (k / 2) {
+       
+    if y > (k / 2){
             y = k - y + 1;
         }
-        if x <= y { 
-        _distance = x;
-        return _distance;
-        }else{
-        _distance = y;
-        return _distance;
+       
+    if x <= y {
+            return x;
+        }
+       
+    else {
+            return y; 
         }
         
-    }
+}
    
    
